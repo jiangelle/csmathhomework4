@@ -9,6 +9,7 @@ Created on Sat May 07 10:13:17 2016
 #init the variables
 import numpy as np
 import numpy.linalg as la
+import matplotlib.pyplot as plt
 
 x1= 0.1
 x2 = 0.2
@@ -48,3 +49,13 @@ while (la.norm(g(x1,x2),2) >= 1e-4):
         x1 = x1 + s[0]
         x2 = x2 +s[1]
 print x1,x2 ,func(x1,x2)
+
+x,y=np.mgrid[-2:2:20j,-2:2:20j]
+z=func(x,y)
+#print x,y,z
+ax=plt.subplot(111,projection='3d')
+ax.plot_surface(x,y,z,rstride=2,cstride=1,cmap=plt.cm.coolwarm,alpha=0.6)
+ax.set_xlabel('x')
+ax.set_ylabel('y')
+ax.set_zlabel('z')
+plt.show()
